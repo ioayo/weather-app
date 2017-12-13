@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class SearchBar extends Component {
 	constructor(props) {
 		super(props);
-
+			
 		this.state = {
 			term: ''
 		}
@@ -12,21 +12,31 @@ export default class SearchBar extends Component {
 	}
 	
 	onInputChange(e) {
+		console.log(e.target.value)
 		this.setState({
 			term: e.target.value
 		})
 	}
+	
+	onFormSubmit(e) {
+		e.preventDefault();
+	}
+
 	render() {
 		return(
-			<form className="input-group">
+			<form className='input-group' onSubmit={this.onFormSubmit}>
 				<input 
-					placeholder="Get a five-day forecatst"
-					className="form-control"
-					value={this.state.term}
+					className='form-control' 
+					placeholder='Type any city here to get a weather in closest 5 days'
 					onChange={this.onInputChange}
-				/>
-				<span className="input-group-btn">
-					<button type="submit" className="btn btn-secondary">Search</button>
+					value={this.state.term}
+					/>
+				<span className='input-group-btn'>
+					<button 
+						type='submit' 
+						className='btn btn-secondary'
+						
+						>Search</button>
 				</span>
 			</form>
 		)
